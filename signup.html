@@ -3,56 +3,58 @@
 
 <head>
     <script type="text/javascript">
-        function checkPass(e) {
-            var password = document.getElementById('password');
-            var passwordCheck = document.getElementById('passwordCheck');
-            var password = value.checkPass;
-            var passwordCheck = value.passwordCheck;
-            if (password === passwordCheck) {
-                console.log('same');
+        function checkPasswordMatch(e) {
+            var pass = document.getElementById("password");
+            var passCh = document.getElementById("password-check");
+            var pass1 = pass.value;
+            var pass2 = passCh.value;
+            if (pass1 === pass2) {
+                console.log("same")
+                //e.submit();
             } else {
                 e.preventDefault();
-                makeRed(passwordCheck);
-                makeRed(password);
-                console.log('not same');
+                makeRed(passCh);
+                makeRed(pass);
+                console.log("not same")
                 return false;
             }
         }
     </script>
+    <script type="text/javascript" src="scripts/validate.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#userName').on('input', function() {
+        $(document).ready(function () {
+            $('#userName').on('input', function () {
                 var userName = $(this).val();
                 $.ajax({
                     url: 'checkUserName.php',
                     type: 'POST',
-                    data: {userName: userName},
-                    success: function(response) {
+                    data: { userName: userName },
+                    success: function (response) {
                         $('#message').html(response);
                     }
                 });
             });
         });
-        $(document).ready(function(){
-            $('#email').on('input', function() {
+        $(document).ready(function () {
+            $('#email').on('input', function () {
                 var email = $(this).val();
                 $.ajax({
                     url: 'checkEmail.php',
                     type: 'POST',
-                    data: {email: email},
-                    success: function(response){
+                    data: { email: email },
+                    success: function (response) {
                         $('#message1').html(response);
                     }
                 });
             });
         });
     </script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
-    <form method="POST" action="signup.php" id="mainForm">
+    <form method="post" action="signup.php" id="mainForm">
         First Name:<br>
         <input type="text" name="firstName" id="firstName" class="required">
         <br>
@@ -73,7 +75,7 @@
         <input type="password" name="password" id="password" class="required">
         <br>
         Re enter Password: <br>
-        <input type="password" name="passwordCheck" id="passwordCheck" class="requiered">
+        <input type="password" name="password-check" id="password-check" class="required">
         <br>
         <input type="submit" value="Signup">
     </form>
