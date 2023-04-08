@@ -2,19 +2,20 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="validation.js"></script>
+    <script type="text/javascript" src="scripts/validate.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    </script>
 </head>
 
 <body>
-    <form method="post" action="login.php" id="mainform">
+    <form method="post" action="login.php" id="mainForm">
         User Name: <br>
-        <input type="text" name="username" id="username" class="required" placeholder="User Name">
+        <input type="text" name="userName" id="userName" class="required">
         <br>
         Password: <br>
-        <input type="text" name="passowrd" id="password" class="required" placeholder="Password">
+        <input type="password" name="password" id="password" class="required">
         <br>
-        <a href="forgotPassword.html"><i>Forgot Password?</i></a>
+        <input type="submit" value="login" placeholder="login">
     </form>
 </body>
 
