@@ -1,31 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>SignUp/title>
-  <link rel="stylesheet" href="css/signup.css">
+    <script type="text/javascript">
+        function checkPass(e) {
+            var password = document.getElementById('password');
+            var passwordCheck = document.getElementById('passwordCheck');
+            var password = value.checkPass;
+            var passwordCheck = value.passwordCheck;
+            if (password === passwordCheck) {
+                console.log('same');
+            } else {
+                e.preventDefault();
+                makeRed(passwordCheck);
+                makeRed(password);
+                console.log('not same');
+                return false;
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#userName').on('input', function() {
+                var userName = $(this).val();
+                $.ajax({
+                    url: 'checkUserName.php',
+                    type: 'POST',
+                    data: {userName: userName},
+                    success: function(response) {
+                        $('#message').html(response);
+                    }
+                });
+            });
+        });
+        $(document).ready(function(){
+            $('#email').on('input', function() {
+                var email = $(this).val();
+                $.ajax({
+                    url: 'checkEmail.php',
+                    type: 'POST',
+                    data: {email: email},
+                    success: function(response){
+                        $('#message1').html(response);
+                    }
+                });
+            });
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-  <div class="signUpForm">
-    <div class="wrapper">
-    <form action="signup/signup.php" class="form">
-      <h1 class="title">Sign Up</h1>
-
-      <div class="inputContainer">
-        <input type="text" class="input" placeholder="a">
-        <label for="" class="label">Email</label>
-      </div>
-
-      <div class="inputContainer">
-        <input type="text" class="input" placeholder="a">
-        <label for="" class="label">Password</label>
-      </div>
-      <button type="submit" formaction="signup.html" class="button">Sign Up</button>
-      <input type="submit" class="submitBtn" value="Sign In">
+    <form method="POST" action="signup.php" id="mainForm">
+        First Name:<br>
+        <input type="text" name="firstName" id="firstName" class="required">
+        <br>
+        Last Name: <br>
+        <input type="text" name="lastName" id="lastName" class="required">
+        <br>
+        UserName: <br>
+        <input type="text" name="userName" id="userName" class="required">
+        <br>
+        <div id="message"></div>
+        <br>
+        Email: <br>
+        <input type="text" name="email" id="email" class="required">
+        <br>
+        <div id='message1'></div>
+        <br>
+        Password: <br>
+        <input type="password" name="password" id="password" class="required">
+        <br>
+        Re enter Password: <br>
+        <input type="password" name="passwordCheck" id="passwordCheck" class="requiered">
+        <br>
+        <input type="submit" value="Signup">
     </form>
-    </div>
-  </div>
 </body>
+
 </html>
