@@ -24,9 +24,8 @@ if ($method === 'POST') {
                     if ($user['userName'] === $un) {
                         $_SESSION['loggedin'] = true;
                         $_SESSION['userName'] = $un;
-                        header("Location: home.html");
-                        exit();
                     }
+                    header("Location: feed.html");
                 } else {
                     echo "<script>alert('Username and/or password is incorrect.');</script>";
                     $_SESSION['loggedin'] = false;
