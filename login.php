@@ -23,6 +23,7 @@ if ($method === 'POST') {
                 if ($result->num_rows > 0) {
                     if ($user['userName'] === $un) {
                         $_SESSION['loggedin'] = true;
+                        $_SESSION['userName'] = $un;
                         header("Location: home.html");
                         exit();
                     }
